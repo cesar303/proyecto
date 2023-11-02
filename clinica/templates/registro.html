@@ -1,0 +1,38 @@
+
+{% extends 'plantilla_registro.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'estilos.css' %}" >
+</head>
+
+<body>
+   
+    {%load static%}
+    <div class="contenedor-registro">
+     <div class="shadow w-75 mx-auto p-3 m-5 img-container ">
+        <ul> <br>
+            <br>
+           <p>Clínica médica <br> <br>
+            <p>"LA ETERNA PRIMAVERA"</p> <br>
+           </p> 
+            <p><a aria-current="page" href="{% url 'inicio'%}">Ingresar como paciente</a></p>
+            <br>
+            <p><a aria-current="page" href="{% url 'acceso_admin'%}">Ingresar como personal administrativo</a></p>
+           </p>
+           
+
+        </ul> 
+        
+         
+      </div>
+    </div>
+    
+    
+    
+</body>
+</html>
+{% endblock%}

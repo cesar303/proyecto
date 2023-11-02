@@ -1,0 +1,97 @@
+{% extends 'principal_admin.html' %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages%}
+          <div class="alert alert-sucess">{{message}}</div>
+        {% endfor %}
+    {% endif%}
+    <head>
+        {%load static%}
+            <link rel="stylesheet" type="text/css" href="{% static 'estilos.css' %}">
+    </head>
+   
+    <h2 class="text-center">Pacientes</h2>
+    <form class="formulario-pacientes shadow mx-3 p-3 m-0" method="post" action="pacientesa/guardar">
+        {% csrf_token %} 
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" class="form-control my-2" required>
+    
+        <label for="dpi">DPI:</label>
+        <input type="text" name="dpi" class="form-control my-2" required maxlength="13" pattern="\d{13}" title="Ingresa exactamente 13 dígitos">
+    
+        <label for="fecha_de_nacimiento">Fecha de Nacimiento:</label>
+        <input type="text" name="fecha_de_nacimiento" class="form-control my-2" required>
+    
+        <label for="direccion">Dirección:</label>
+        <input type="text" name="direccion" class="form-control my-2" required>
+    
+        <label for="razon">Razón de la visita:</label>
+        <input type="text" name="razon" class="form-control my-2" required>
+    
+        <label for="receta">Receta médica:</label>
+        <input type="text" name="receta" class="form-control my-2" required>
+    
+        <label for="numero">Número telefónico:</label>
+        <input type="text" name="numero" class="form-control my-2" required maxlength="8" pattern="\d{8}" title="Ingresa exactamente 8 dígitos">
+    
+        <label for="otros">Otros:</label>
+        <textarea class="form-control my-2" name="otros"></textarea>
+    
+        <label for="visita">Visita médica:</label>
+        <input type="text" name="visita" class="form-control my-2" required>
+    
+        <input type="submit" value="Guardar" class="btn btn-primary">
+    </form> <br>
+    <div class="contenedor">
+        <div class="tabla">
+            <table class="table table-lg table-info w-75 mx-auto text-center">
+                <tr class="table-dark">
+                    <th>Nombre</th>
+                    <th>DPI</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Dirección</th>
+                    <th>Razón de la visita</th>
+                    <th>Receta médica</th>
+                    <th>Número telefónico</th>
+                    <th>Otros</th>
+                    <th colspan="3"></th>
+                </tr>
+            {% for paciente in pacientes %}
+                <tr>
+                    <td>{{paciente.nombre}}</td>
+                    <td>{{paciente.dpi}}</td>
+                    <td>{{paciente.fecha_de_nacimiento}}</td>
+                    <td>{{paciente.direccion}}</td>
+                    <td>{{paciente.razon}}</td>
+                    <td>{{paciente.receta}}</td>
+                    <td>{{paciente.numero}}</td>
+                    <td>{{paciente.otros}}</td>
+                    <td> 
+                        <form action="{% url 'eliminar' paciente.id %}"
+                        method="post">
+                            {%csrf_token %}
+                            <button class="btn btn-danger" onclick="return confirm('¿Deseas eliminar a este paciente?')">
+                                Eliminar
+
+                            </button>
+                        </form>
+                    </td>
+                    <td> 
+                        <form action="{% url 'detalle' paciente.id %}"
+                        method="post">
+                            {%csrf_token %}
+                            <button class="btn btn-warning" >
+                                Editar
+
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+
+ 
+{% endblock%}

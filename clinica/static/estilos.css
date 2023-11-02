@@ -1,0 +1,154 @@
+*{
+    margin: 0px;
+}
+.custom-navbar{
+    padding-left: 1%;
+    padding-right: 1%;
+}
+.navbar-brand h1{
+    display: flex;
+    padding-top: 20px;
+    margin-left: 2%; 
+    margin-right: 2%; 
+    font-weight: bold;
+    font-size: 30px;
+}
+.navbar-nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-left: 2%;
+    padding-right: 2%;
+    font-weight: bold;
+    
+}
+.navbar-nav ul li{
+    display: inline-block;
+    padding: 0px 20px;
+}
+.navbar-nav a {
+    color:black;
+    text-decoration: none;
+}
+.navbar-nav a:hover{
+    color:white;
+   
+}
+
+
+
+.navbar{
+    height: 50px;
+    background-color:beige;
+    font-size: x-large;
+    font-style: italic;
+    
+}
+
+.img-container{
+    background-image: url(imagenes/jeringa.jpg) ;
+    background-color: aliceblue;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+    text-align: right;
+    border: none;
+}
+.img-container p{
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Edu TAS Beginner', cursive;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    text-align: left;
+    min-height: auto;
+    font-size: 45px ;
+}
+.imagen-principal{
+    border: none;
+       
+}
+
+p{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+img {
+    width: 30%;
+    height: auto;
+    margin:60px;
+    border: 2px solid #007bff;
+    margin-right: auto;
+    display: inline;
+}
+
+.formulario-pacientes{
+    background-image: url(imagenes/paciente.jpg);
+    background-position: right;
+    background-repeat: no-repeat;
+    margin: 50px;
+    width: auto;
+}
+.form-control{
+    width: 400px;
+}
+.formulario-medicos{
+    background-image: url(imagenes/doctor.jpg);
+    background-size: contain;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    margin: 50px;
+    width: auto;
+}
+.formulario-contacto{
+    background-image: url(imagenes/correo.png);
+    background-size: contain;
+    background-position-x: right;
+    background-repeat: no-repeat;
+    margin: 50px;
+    width: auto;
+}
+h1{
+    text-align: center;
+}
+a{
+    font-size: 30px;
+    text-align: left;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.img-container-admin{
+    background-color: aqua;
+
+    background-image: url(imagenes/admin.png) ;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+    text-align: right;
+    border: none;
+}
+
+.img-container-admin p{
+    text-align: left;
+    min-height: auto;
+    font-size: 40px ;
+}
+.img-registro{
+    background-image: url(imagenes/contraseña.jpg);
+    background-repeat: no-repeat;
+    background-size: 300px;
+    background-position: right;
+    border: none;
+
+}
+.img-registro p{
+    text-align: left;
+
+}
+.img-registro:hover{
+   color: black;
+}
+
+
+
+
+

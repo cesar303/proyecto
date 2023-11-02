@@ -1,0 +1,30 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+    
+    <h2 class="text-center">Medicos</h2>
+    <form class="w-75 shadow mx-auto p-4 m-3" method="post"
+    action="{% url 'editarm' %}">
+       {% csrf_token %}     
+       <input type="hidden" name="id" value="{{medico.id}}">
+
+       Nombre: <input type="text" name="nombre" class="form-control my-2" required value="{{medico.nombre}}">
+       Número de colegiado: <input type="number" name="numero_de_colegiado" class="form-control my-2" required value="{{medico.numero_de_colegiado}}">
+       Especialidad: <input type="text" name="especialidad" class="form-control my-2" required value="{{medico.especialidad}}">
+       Diagnostico:<textarea class="form-control my-2" name="diagnostico">
+        {{medico.diagnostico}}
+       </textarea>
+
+       Otros: 
+       <textarea class="form-control my-2" name="otros">
+        {{medico.otros}}
+       </textarea>
+
+
+
+      
+
+       <input type="submit" value="Actualizar" class="btn btn-warning">
+    </form>
+
+{% endblock%}

@@ -1,0 +1,36 @@
+{% extends 'principal_admin.html' %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages%}
+          <div class="alert alert-sucess">{{message}}</div>
+        {% endfor %}
+    {% endif%}
+    <head>
+        {%load static%}
+            <link rel="stylesheet" type="text/css" href="{% static 'estilos.css' %}">
+    </head>
+   
+    <h2 class="text-center">Historial de visitas</h2>
+    <div class="contenedor">
+        <div class="tabla">
+            <table class="table table-lg table-info w-75 mx-auto text-center">
+                <tr class="table-dark">
+                    <th>Nombre</th>
+                    <th>DPI</th>
+                    <th>Visita</th>
+                    
+                </tr>
+            {% for paciente in pacientes %}
+                <tr><td>{{paciente.nombre}}</td>  
+                    <td>{{paciente.dpi}}</td>
+                    <td>{{paciente.visita}}</td>
+                  
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+
+ 
+{% endblock%}

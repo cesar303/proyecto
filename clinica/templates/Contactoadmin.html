@@ -1,0 +1,51 @@
+{% extends 'principal_admin.html' %}
+
+{% block content %}
+        {% if messages %}
+            {% for message in messages%}
+            <div class="alert alert-sucess">{{message}}</div>
+            {% endfor %}
+        {% endif%}
+    <head>
+        {%load static%}
+                <link rel="stylesheet" type="text/css" href="{% static 'estilos.css' %}">
+    </head>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Mensajes</h1>
+    <div class="contenedor">
+        <div class="tabla">
+            <table class="table table-lg table-info w-75 mx-auto text-center">
+                <tr class="table-dark">
+                    <th>Nombre del Paciente </th>
+                    <th>Número</th>
+                    <th>Mensaje</th>
+                    <th colspan="1"></th>
+                </tr>
+            {% for mensaje in mensajes %}
+                <tr>
+                    <td>{{mensaje.nom_paciente}}</td>
+                    <td>{{mensaje.numero}}</td>
+                    <td>{{mensaje.mensaje}}</td>
+                    <td> 
+                        <form action="{% url 'eliminarmen' mensaje.id %}"
+                        method="post">
+                            {%csrf_token %}
+                            <button class="btn btn-danger" onclick="return confirm('¿Deseas eliminar el mensaje?')">
+                                Eliminar
+        
+                            </button>
+                        </form>
+                    </td>
+                   
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+
+{% endblock%}

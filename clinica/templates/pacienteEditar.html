@@ -1,0 +1,29 @@
+{% extends 'principal_admin.html' %}
+
+{% block content %}
+    
+    <h2 class="text-center">Pacientes</h2>
+    <form class="w-75 shadow mx-auto p-4 m-3" method="post"
+    action="{% url 'editar' %}">
+       {% csrf_token %}     
+       <input type="hidden" name="id" value="{{paciente.id}}">
+
+
+
+       Nombre: <input type="text" name="nombre" class="form-control my-2" required value="{{paciente.nombre}}">
+       DPI: <input type="number" name="dpi" class="form-control my-2" required value="{{paciente.dpi}}">
+       Fecha de Nacimiento: <input type="text" name="fecha_de_nacimiento" class="form-control my-2" required value="{{paciente.fecha_de_nacimiento}}">
+       Dirección:<input type="text" name="direccion" class="form-control my-2" required value="{{paciente.direccion}}">
+       Razón de la visita:<input type="text" name="razon" class="form-control my-2" required value="{{paciente.razon}}">
+       Receta médica: <input type="text" name="receta" class="form-control my-2" required value="{{paciente.receta}}">
+       Número telefónico: <input type="number" name="numero" class="form-control my-2" required value="{{paciente.numero}}">
+       Otros: 
+       <textarea class="form-control my-2" name="otros">
+        {{paciente.otros}}
+       </textarea>
+       Visita médica: <input type="text" name="visita" class="form-control my-2" required value="{{paciente.visita}}">
+
+       <input type="submit" value="Actualizar" class="btn btn-warning">
+    </form>
+
+{% endblock%}

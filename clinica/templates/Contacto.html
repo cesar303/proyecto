@@ -1,0 +1,29 @@
+{% extends 'plantilla.html' %}
+
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success">{{message}}</div>
+        {% endfor %}
+    {% endif %}
+    <head>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'estilos.css' %}">
+    </head>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Contactarte con la clínica</h1>
+    <form class="formulario-contacto shadow mx-3 p-3 m-0" method="post" action="contacto/guardar">
+        {% csrf_token %} 
+        Nombre: <input type="text" name="nom_paciente" class="form-control my-2" required>
+        Número: <input type="text" name="numero" class="form-control my-2" required maxlength="8" pattern="\d{8}" title="Ingresa exactamente 8 dígitos">
+        Mensaje: 
+        <textarea class="form-control my-2" name="mensaje"></textarea>
+
+        <input type="submit" value="Enviar" class="btn btn-primary">
+    </form> <br>
+{% endblock %}

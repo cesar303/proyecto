@@ -1,0 +1,44 @@
+
+{% extends 'plantilla_registro.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+    {% if messages %}
+        {% for message in messages%}
+          <div class="alert alert-danger">{{message}}</div>
+        {% endfor %}
+    {% endif%}
+    <head>
+        {%load static%}
+         <link rel="stylesheet" type="text/css" href="{% static 'estilos.css' %}" >
+
+    </head>
+    <body>
+        {%load static%}
+        <br>
+        <br>
+        <div class="shadow w-75 mx-auto p-3 m-5 img-registro ">
+            <h1>Acceso</h1>
+            <br>
+            <br>
+            <br>
+            <br>
+            <form method="post">
+                {% csrf_token %} 
+                
+                <p>
+                    <label for="contraseña">Contraseña</label>
+                    <input type="password" name="contraseña" required>
+                    <button type="submit">Acceder</button>  
+                </p>
+              
+                <br>
+                
+            </form>
+        </div>
+        
+    </body>
+</html>
+{% endblock%}
