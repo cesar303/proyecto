@@ -12,25 +12,33 @@
     </head>
    
     <h2 class="text-center">Historial de visitas</h2>
-    <div class="contenedor">
-        <div class="tabla">
-            <table class="table table-lg table-info w-75 mx-auto text-center">
+
+     
+            <table >
                 <tr class="table-dark">
                     <th>Nombre</th>
                     <th>DPI</th>
                     <th>Visita</th>
+                    <th>Médico</th>
+                    <th>Diagnositco</th>
+                    <th>Receta médica</th>
+
+
                     
                 </tr>
             {% for paciente in pacientes %}
                 <tr><td>{{paciente.nombre}}</td>  
                     <td>{{paciente.dpi}}</td>
                     <td>{{paciente.visita}}</td>
+                    <td>{{paciente.doctor}}</td>
+                    <td>{{paciente.diagnóstico}}</td>
+                    <td>{{paciente.receta}}</td>
                   
                 </tr>
             {% endfor %}
             </table>
-        </div>
-    </div>
+      
+  
 
  
 {% endblock%}

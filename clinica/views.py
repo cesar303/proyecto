@@ -52,20 +52,25 @@ def guardar(request):
     fecha_de_nacimiento= request.POST["fecha_de_nacimiento"]
     direccion=request.POST["direccion"]
     razon=request.POST["razon"]
-    receta=request.POST["receta"]
     numero=request.POST["numero"]
     otros=request.POST["otros"]
     visita=request.POST["visita"]
-    #lado derecho nombre del metodo, lado izquierdo es nombre del modelo
-    p=Paciente(nombre=nombre,dpi=dpi,fecha_de_nacimiento=fecha_de_nacimiento,direccion=direccion,razon=razon,receta=receta,numero=numero,otros=otros,visita=visita)
-    p.save()
-    messages.success(request,'Paciente agregado')
-    pacientes=Paciente.objects.all()
-    medicos=Medico.objects.all()
-    return render(request,'pacientes.html',{
-        'pacientes':pacientes,
-        'medicos' :medicos
-    })
+    if Paciente.objects.filter(dpi=dpi).exists():
+        messages.error(request,'DPI ya existente')
+        return redirect('consultar')
+    elif Paciente.objects.filter(numero=numero).exists():
+        messages.error(request,'Número ya existente')
+        return redirect('consultar')
+    else:
+        p=Paciente(nombre=nombre,dpi=dpi,fecha_de_nacimiento=fecha_de_nacimiento,direccion=direccion,razon=razon,numero=numero,otros=otros,visita=visita)
+        p.save()
+        messages.success(request,'Paciente agregado')
+        pacientes=Paciente.objects.all()
+        medicos=Medico.objects.all()
+        return render(request,'pacientes.html',{
+            'pacientes':pacientes,
+            'medicos' :medicos
+         })
 def guardaradmin(request):
     nombre=request.POST["nombre"]
     dpi=request.POST["dpi"]
@@ -76,16 +81,25 @@ def guardaradmin(request):
     numero=request.POST["numero"]
     otros=request.POST["otros"]
     visita=request.POST["visita"]
+    doctor=request.POST["doctor"]
+    diagnóstico=request.POST["diagnóstico"]
     #lado derecho nombre del metodo, lado izquierdo es nombre del modelo
-    p=Paciente(nombre=nombre,dpi=dpi,fecha_de_nacimiento=fecha_de_nacimiento,direccion=direccion,razon=razon,receta=receta,numero=numero,otros=otros,visita=visita)
-    p.save()
-    messages.success(request,'Paciente agregado')
-    pacientes=Paciente.objects.all()
-    medicos=Medico.objects.all()
-    return render(request,'pacientesadmin.html',{
-        'pacientes':pacientes,
-        'medicos' :medicos
-    })
+    if Paciente.objects.filter(dpi=dpi).exists():
+        messages.error(request,'DPI ya existente')
+        return redirect('pacientea')
+    elif Paciente.objects.filter(numero=numero).exists():
+        messages.error(request,'Número ya existente')
+        return redirect('pacientea')
+    else:
+        p=Paciente(nombre=nombre,dpi=dpi,fecha_de_nacimiento=fecha_de_nacimiento,direccion=direccion,razon=razon,receta=receta,numero=numero,otros=otros,visita=visita,doctor=doctor,diagnóstico=diagnóstico)
+        p.save()
+        messages.success(request,'Paciente agregado')
+        pacientes=Paciente.objects.all()
+        medicos=Medico.objects.all()
+        return render(request,'pacientesadmin.html',{
+            'pacientes':pacientes,
+            'medicos' :medicos
+        })
 def eliminar(request, id):
     paciente=Paciente.objects.filter(pk=id)
     paciente.delete()
@@ -106,8 +120,10 @@ def editar(request):
     numero=request.POST["numero"]
     otros=request.POST["otros"]
     visita=request.POST["visita"]
+    doctor=request.POST["doctor"]
+    diagnóstico=request.POST["diagnóstico"]
     id=request.POST["id"]
-    Paciente.objects.filter(pk=id).update(id=id,nombre=nombre,dpi=dpi,fecha_de_nacimiento=fecha_de_nacimiento,direccion=direccion,razon=razon,receta=receta,numero=numero,otros=otros, visita=visita)
+    Paciente.objects.filter(pk=id).update(id=id,nombre=nombre,dpi=dpi,fecha_de_nacimiento=fecha_de_nacimiento,direccion=direccion,razon=razon,receta=receta,numero=numero,otros=otros, visita=visita,doctor=doctor,diagnóstico=diagnóstico)
     messages.success(request,'Paciente modificado')
     return redirect('pacientea')
 def historial(request):
@@ -126,12 +142,15 @@ def medicoguardar(request):
     nombre=request.POST["nombre"]
     numero_de_colegiado=request.POST["numero_de_colegiado"]
     especialidad=request.POST["especialidad"]
-    diagnostico=request.POST["diagnostico"]
     otros=request.POST["otros"]
-    m=Medico(nombre=nombre,numero_de_colegiado=numero_de_colegiado,especialidad=especialidad,diagnostico=diagnostico,otros=otros)
-    m.save()
-    messages.success(request, 'proceso exitoso')
-    return redirect('consultarm')
+    if Medico.objects.filter(numero_de_colegiado=numero_de_colegiado).exists():
+        messages.error(request,'Médico ya existente')
+        return redirect('consultarm')
+    else:
+        m=Medico(nombre=nombre,numero_de_colegiado=numero_de_colegiado,especialidad=especialidad,otros=otros)
+        m.save()
+        messages.success(request, 'proceso exitoso')
+        return redirect('consultarm')
 
 def eliminarm(request, id):
     medico=Medico.objects.filter(pk=id)
@@ -146,10 +165,9 @@ def editarm(request):
     nombre=request.POST["nombre"]
     numero_de_colegiado=request.POST["numero_de_colegiado"]
     especialidad=request.POST["especialidad"]
-    diagnostico=request.POST["diagnostico"]
     otros=request.POST["otros"]
     id=request.POST["id"]
-    Medico.objects.filter(pk=id).update(id=id,nombre=nombre,numero_de_colegiado=numero_de_colegiado,especialidad=especialidad,diagnostico=diagnostico,otros=otros)
+    Medico.objects.filter(pk=id).update(id=id,nombre=nombre,numero_de_colegiado=numero_de_colegiado,especialidad=especialidad,otros=otros)
     messages.success(request,'Medico modificado')
     return redirect('consultarm')
 def contacto(request):

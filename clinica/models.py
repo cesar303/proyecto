@@ -21,11 +21,12 @@ class Paciente(models.Model):
     numero=models.IntegerField(validators=[longitudnumero])
     otros=models.CharField(max_length=300)
     visita=models.CharField(max_length=100)
+    doctor=models.CharField(max_length=100)
+    diagnóstico=models.CharField(max_length=300)
 class Medico(models.Model):
     nombre= models.CharField(max_length=30)
     numero_de_colegiado= models.IntegerField()
     especialidad= models.CharField(max_length=200)
-    diagnostico=models.CharField(max_length=200)
     otros=models.CharField(max_length=200)
 class Mensajes(models.Model):
     nom_paciente=models.CharField(max_length=30)

@@ -15,13 +15,15 @@
        Fecha de Nacimiento: <input type="text" name="fecha_de_nacimiento" class="form-control my-2" required value="{{paciente.fecha_de_nacimiento}}">
        Dirección:<input type="text" name="direccion" class="form-control my-2" required value="{{paciente.direccion}}">
        Razón de la visita:<input type="text" name="razon" class="form-control my-2" required value="{{paciente.razon}}">
-       Receta médica: <input type="text" name="receta" class="form-control my-2" required value="{{paciente.receta}}">
+       Receta médica: <input type="text" name="receta" class="form-control my-2" value="{{paciente.receta}}">
        Número telefónico: <input type="number" name="numero" class="form-control my-2" required value="{{paciente.numero}}">
        Otros: 
        <textarea class="form-control my-2" name="otros">
         {{paciente.otros}}
        </textarea>
        Visita médica: <input type="text" name="visita" class="form-control my-2" required value="{{paciente.visita}}">
+       Médico: <input type="text" name="doctor" class="form-control my-2" required value="{{paciente.doctor}}">
+       Diagnóstico <input type="text" name="diagnóstico" class="form-control my-2"  value="{{paciente.diagnóstico}}">
 
        <input type="submit" value="Actualizar" class="btn btn-warning">
     </form>
